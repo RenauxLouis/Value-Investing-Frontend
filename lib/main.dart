@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
 Future<List<dynamic>> getListSECTickers() async {
   print("Get list SEC Tickers");
   http.Response response =
-      await http.Client().get(Uri.https("tickerdownload.com", "/list_sec/"));
+      await http.Client().get(Uri.https("tickerbackend.web.app", "/list_sec/"));
   Map<String, dynamic> parsedBody = jsonDecode(response.body);
   List<dynamic> listSECTickers = parsedBody["tickers"];
 

@@ -93,12 +93,14 @@ class TickerInputField extends State<MyTickerInput> {
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: TextField(
         onSubmitted: (enteredTicker) {
-          bool isNotSECTicker =
-              !widget.futureSECTickers.contains(enteredTicker.toLowerCase());
+          String cleanedEnteredTicker =
+              enteredTicker.replaceAll(new RegExp(r"\s+"), "");
+          bool isNotSECTicker = !widget.futureSECTickers
+              .contains(cleanedEnteredTicker.toLowerCase());
           // bool filed10k = assertFiled10k(enteredTicker);
 
           setState(() {
-            if (enteredTicker == "") {
+            if (cleanedEnteredTicker == "") {
               _inputError = true;
               _errorMessage = "Please select a ticker";
             } else if (isNotSECTicker) {
@@ -113,12 +115,12 @@ class TickerInputField extends State<MyTickerInput> {
             }
           });
           if (!_inputError) {
-            return submitTickerName(context, enteredTicker);
+            return submitTickerName(context, cleanedEnteredTicker);
           }
         },
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
-          hintText: "Enter a ticker (TSLA, AMZN...)",
+          hintText: "Enter a ticker (TSLA, AMZN...) and press ENTER",
           errorText: _inputError ? _errorMessage : null,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
           suffixIcon: Icon(Icons.search),

@@ -11,7 +11,7 @@ class FakeTickerRepository implements TickerRepository {
   Future<File> fetchTicker(String tickerName) async {
     String upperCaseTickerName = tickerName.toUpperCase();
     http.Response response = await http.Client()
-        .get(Uri.https("tickerdownload.com", "/params_web/", {
+        .get(Uri.https("tickerbackend.web.app", "/params_web/", {
       "years": "2015-2020",
       "Income": "true",
       "Proxy": "true",
