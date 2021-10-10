@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
   Future<List<dynamic>> futureSECTickers;
 
   @override
-  void initState() {
+  initState() {
     super.initState();
     futureSECTickers = getListSECTickers();
   }
